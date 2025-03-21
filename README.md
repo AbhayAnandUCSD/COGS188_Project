@@ -1,6 +1,5 @@
-# COGS188 Project template
-Fork this repo.
+# AutoBots: Using Reinforcement Learning with Carla & DonkeySim
 
-Once you do it is is your repo. You are free to manage the repo as you see fit, edit this README, add data files, add scripts, etc. 
+The goal of this project is to train a Reinforcement Learning (RL) Classifier on autonomous vehicles. We plan to use both CARLA and DonkeyCar Simulator to navigate our vehicle. CARLA will provide a complex urban driving environment, while the DonkeyCar simulator will be used for a simpler track-based navigation on it's “Warren Field” circuit. We plan to solely rely on a Lidar sensor for data collection because of its robustness in capturing depth information and obstacle detection regardless of lighting conditions, an advantage over typical computer vision based data collection. We implement two deep RL algorithms: Actor-Critic and Proximal Policy Optimization (PPO), both designed for continuous action spaces since algorithms like simple a simple Q learning to are ineffective for problems in continious action spaces. We will use the gathered data to train agents to take optimal actions such as steering, acceleration, and braking based on the cars current position relative to the world. Performance will be evaluated using key metrics such as cumulative reward, lap completion time, and distance travelled. By comparing these metrics across different models and training scenarios, we aim to determine which RL method provides the most robust and efficient control for autonomous driving in simulated environments.
 
-Also, you are free and encouraged to share this project after the course and to add it to your portfolio. Just be sure to fork it to your GitHub at the end of the quarter!
+Check out our code and website to explore further!
