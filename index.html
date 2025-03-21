@@ -28,57 +28,28 @@
         <section id="abstract">
             <h2>Abstract</h2>
             <p>
-                The goal of this project is to train a Reinforcement Learning (RL) Classifier on autonomous
-                vehicles.
-                We plan to use both CARLA and DonkeyCar Simulator to navigate our vehicle.
-                CARLA will provide a complex urban driving environment, while the DonkeyCar simulator will
-                be used for a simpler track-based navigation on it's "Warren Field" circuit.
-                We plan to solely rely on a Lidar sensor for data collection because of its robustness in capturing depth
-                information and obstacle detection regardless of lighting conditions, an advantage over
-                typical computer vision based data collection.
-                We implement two deep RL algorithms:
-                Actor-Critic and Proximal Policy Optimization (PPO), both designed for continuous action
-                spaces since algorithms like simple a simple Q learning to are ineffective for problems in
-                continious action spaces.
-                We will use the gathered data to train agents to take optimal
-                actions such as steering, acceleration, and braking based on the cars current position
-                relative to the world.
-                Performance will be evaluated using key metrics such as cumulative
-                reward, lap completion time, and distance travelled.
-                By comparing these metrics across
-                different models and training scenarios, we aim to determine which RL method provides the
-                most robust and efficient control for autonomous driving in simulated environments.
+                The goal of this project is to train a Reinforcement Learning (RL) Classifier on autonomous vehicles. We plan to use both CARLA and DonkeyCar Simulator to navigate our vehicle. CARLA will provide a complex urban driving environment, while the DonkeyCar simulator will be used for a simpler track-based navigation on it's “Warren Field” circuit. We plan to solely rely on a Lidar sensor for data collection because of its robustness in capturing depth information and obstacle detection regardless of lighting conditions, an advantage over typical computer vision based data collection. We implement two deep RL algorithms: Actor-Critic and Proximal Policy Optimization (PPO), both designed for continuous action spaces since algorithms like simple a simple Q learning to are ineffective for problems in continious action spaces. We will use the gathered data to train agents to take optimal actions such as steering, acceleration, and braking based on the cars current position relative to the world. Performance will be evaluated using key metrics such as cumulative reward, lap completion time, and distance travelled. By comparing these metrics across different models and training scenarios, we aim to determine which RL method provides the most robust and efficient control for autonomous driving in simulated environments.
             </p>
         </section>
 
         <section id="background">
             <h2>Background</h2>
             <p>
-                Autonomous driving has emerged as a rapidly evolving field, as recent advances in
-                computing power and machine learning continue to push the boundaries of vehicle
-                autonomy [1].
-                A major breakthrough was the introduction of deep reinforcement learning
-                methods capable of learning complex control policies from high-dimensional data, such as
-                pixel inputs [2].
-                Among various simulation tools, DonkeyCar Simulator ("DonkeySim") provides a relatively
-                accessible environment where researchers can collect training data in a less resource-
-                intensive, hobby-focused setting [3], DonkeySim offers a front-facing camera stream, speed
-                readings, and steering angle data-sufficient for exploring end-to-end RL pipelines.
-                Concurrent work in policy optimization techniques, such as Proximal Policy Optimization
-                (PPO), has improved training stability for continuous control tasks, making them more
-                suitable for real-world driving problems [4].
-                By leveraging vision-based RL, robust network
-                architectures, and user-friendly simulators like DonkeySim, researchers aim to accelerate
-                the development of autonomous vehicle control systems.
-            </p>
+                Autonomous driving has rapidly advanced due to improvements in computing power and machine learning, particularly reinforcement learning (RL), which enables autonomous agents to learn optimal control strategies through trial and error. Unlike traditional rule-based or supervised learning methods, RL-based approaches can dynamically adapt to new environments and uncertain conditions, making them well-suited for self-driving applications <a href="https://arxiv.org/pdf/2002.00444">[1]</a>. However, a significant challenge in RL-driven autonomous navigation is the simulation-to-reality gap, where models trained in virtual environments struggle to perform reliably in real-world settings due to differences in sensor noise, road textures, and unexpected obstacles <a href="https://arxiv.org/pdf/1710.06537">[2]</a>. Research on domain adaptation and transfer learning continues to address this issue by fine-tuning RL policies with real-world data <a href="(https://www.cs.utexas.edu/~pstone/Papers/bib2html-links/JMLR09-taylor.pdf)">[3]</a>. <br><br>
 
-            <h3>Why is this important?</h3>
+                Simulation environments play a crucial role in training RL-based autonomous driving models. DonkeyCar Simulator (DonkeySim) provides a lightweight platform for testing self-driving models on controlled tracks and is widely used due to its accessibility and ease of experimentation <a href="https://docs.donkeycar.com/guide/deep_learning/simulator/">[4]</a>. The simulator provides key sensory inputs such as camera feeds, speed readings, and steering angles, enabling the development of reinforcement learning pipelines without requiring physical hardware. For more complex urban driving scenarios, CARLA offers a high-fidelity simulation environment with dynamic traffic, weather conditions, and diverse road layouts <a href="https://carla.readthedocs.io/en/latest/">[5]</a>. CARLA allows for more extensive testing of RL models in realistic settings, making it a crucial tool for benchmarking autonomous navigation systems. <br><br>
+
+                Recent advancements in policy optimization techniques have improved training stability and efficiency in reinforcement learning for autonomous driving. Proximal Policy Optimization (PPO) has emerged as a preferred method for continuous control tasks due to its ability to balance exploration and exploitation while preventing overly large policy updates <a href="https://stable-baselines3.readthedocs.io/en/v1.0/modules/ppo.html">[6]</a>. Additionally, Actor-Critic methods provide an effective framework for reinforcement learning by combining value-based and policy-based learning, resulting in more stable and informed decision-making in autonomous navigation tasks <a href="https://stable-baselines3.readthedocs.io/en/v1.0/modules/sac.html">[7]</a>. <br><br>
+
+                Self-driving technology has the potential to improve road safety, efficiency, and accessibility, but achieving reliable autonomy remains a challenge. Reinforcement learning-based methods, combined with improvements in simulation environments, optimized reward functions, and safer real-world deployment strategies, can contribute to the refinement of autonomous navigation systems. Continued research on policy optimization, explainable AI, and real-world generalization will be essential for making self-driving technology both practical and ethically responsible.
+            </p>
+        </section>
+        <section>
+            <h2>Why is this Important?</h2>
             <p>
                 Autonomous driving stands to improve road safety, increase mobility,
-                and reduce congestion.
-                However, it also introduces unique challenges in perception,
-                planning, and control.
-                Studying reinforcement learning in this domain is crucial for
+                and reduce congestion. However, it also introduces unique challenges in perception,
+                planning, and control. Studying reinforcement learning in this domain is crucial for
                 advancing algorithms that can handle high-dimensional state spaces and continuous action
                 controls, ultimately bringing us closer to reliable self-driving cars.
             </p>
@@ -87,30 +58,14 @@
         <section id="problem-statement">
             <h2>Problem Statement</h2>
             <p>
-                Autonomous navigation for industrial and factory environments requires precise and
-                efficient vehicle control to ensure safe and timely transportation of goods.
-                Traditional rule-
-                based and vision-based approaches struggle with real-time adaptability and robustness in
-                dynamic settings where numerous unexpected obstacles may arrise due to minor mishaps.
-                Through our project, we aim to develop a deep reinforcement learning (RL) model that
-                enables autonomous vehicles to navigate factory environments using only LiDAR data as
-                input.
-                By leveraging reinforcement learning techniques, particularly Proximal Policy
-                Optimization (PPO) and Actor-Critic methods, we aim to train a model capable of handling
-                continuous action spaces while minimizing computational complexity.
-                Our goal is to create
-                an efficient, collision-free, and fast driving policy that enhances safety, accuracy, and cost-
-                effectiveness in automated logistics and manufacturing operations.
+                Autonomous navigation for industrial and factory environments requires precise and efficient vehicle control to ensure safe and timely transportation of goods. Traditional rule-based and vision-based approaches struggle with real-time adaptability and robustness in dynamic settings where numerous unexpected obstacles may arrise due to minor mishaps. Through our project, we aim to develop a deep reinforcement learning (RL) model that enables autonomous vehicles to navigate factory environments using only LiDAR data as input. By leveraging reinforcement learning techniques, particularly Proximal Policy Optimization (PPO) and Actor-Critic methods, we aim to train a model capable of handling continuous action spaces while minimizing computational complexity. Our goal is to create an efficient, collision-free, and fast driving policy that enhances safety, accuracy, and cost-effectiveness in automated logistics and manufacturing operations.
             </p>
         </section>
 
         <section id="data">
             <h2>Data</h2>
             <p>
-                For this reinforcement learning project, we generated training data through interactions with
-                the CARLA simulator, a high-fidelity environment designed for autonomous vehicle research.
-                Unlike traditional datasets, our approach relies on real-time sensory inputs from the
-                simulator, with LiDAR data serving as the cornerstone of our state representation.
+                For this reinforcement learning project, we generated training data through interactions with the CARLA simulator, a high-fidelity environment designed for autonomous vehicle research. Unlike traditional datasets, our approach relies on real-time sensory inputs from the simulator, with LiDAR data serving as the cornerstone of our state representation.
             </p>
 
             <h3>LIDAR Data Collection for CARLA Implementation</h3>
@@ -119,6 +74,13 @@
                     <strong>LiDAR Sensor:</strong> We attached a LiDAR sensor to the vehicle in CARLA, configured
                     with a 50-meter range to capture point cloud data representing distances to surrounding
                     objects.
+                    <ul>
+                        <li>
+                            By using LIDAR data instead of camera inputs, we avoid the computational overhead of
+                            convolutional neural networks, making our model efficient for real-time industrial
+                            applications while maintaining robust environmental perception.
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <strong>Data Processing:</strong> The raw LiDAR point cloud is processed to create a compact
@@ -131,8 +93,7 @@
                         <li>
                             For each sector, we compute the minimum and maximum distances to obstacles,
                             yielding 16 features (8 minimums and 8 maximums).
-                            If no points are detected in a
-                            sector, a default distance of 50 meters is used.
+                            If no points are detected in a sector, a default distance of 50 meters is used.
                         </li>
                         <li>
                             This approach reduces computational complexity while preserving spatial
@@ -141,7 +102,7 @@
                     </ul>
                 </li>
                 <li>
-                    <strong>State Augmentation:</strong> The LiDAR-derived features are augmented with two
+                    <strong>State Augmentation: </strong> The LiDAR-derived features are augmented with two
                     additional variables:
                     <ul>
                         <li>
@@ -150,71 +111,74 @@
                         </li>
                         <li>
                             Angular difference between the vehicle's current heading (yaw) and the direction to
-                            the next waypoint, normalized to \[-180°, 180°].
+                            the next waypoint, normalized to [-180°, 180°].
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <strong>Implementation Details:</strong> In our CarlaEnvWrapper class, the \_get\_state method
+                    <strong>Implementation Details:</strong> In our <code>CarlaEnvWrapper</code> class, the <code>_get_state</code> method
                     processes LIDAR data by converting raw points into polar coordinates (angles and
                     distances), binning them into sectors, and computing min/max distances.
-                    The state is
-                    updated synchronously with each simulation tick to ensure consistency.
-                </li>
-                <li>
-                    By using LIDAR data instead of camera inputs, we avoid the computational overhead of
-                    convolutional neural networks, making our model efficient for real-time industrial
-                    applications while maintaining robust environmental perception.
+                    The state is updated synchronously with each simulation tick to ensure consistency.
                 </li>
             </ul>
 
             <h3>DonkeySim Implementation</h3>
-            <h4>LiDAR-Based State Representation</h4>
             <ul>
+                <li> 
+                    <strong>LiDAR-Based State Representation</strong>: Instead of relying on the default camera feed, we integrate a virtual LiDAR sensor for spatial awareness.
+                    <ul>
+                        <li>
+                            The LiDAR readings are discretized into three key sectors: left, center, and right,
+                            providing depth perception.
+                        </li>
+                    </ul>
+                </li>
+
                 <li>
-                    Instead of relying on the default camera feed, we integrate a virtual LiDAR sensor for
-                    spatial awareness.
+                    <strong>Additional State Variables</strong>
+                    <ul> 
+                        <li>Speed of the vehicle</li>
+                        <li>Distance to track boundaries (to prevent off-track behavior)</li>
+                        <li>Angular deviation from the optimal racing line (helps maintain smooth turns)</li>
+                    </ul>
                 </li>
+
                 <li>
-                    The LiDAR readings are discretized into three key sectors: left, center, and right,
-                    providing depth perception.
+                    <strong>Experience Collection & Training Data</strong>
+                    <ul> 
+                        <li>Each interaction produces an experience tuple: (state, action, reward, next_state). </li>
+                        <li>Actions taken: steering, acceleration, and braking.</li>
+                    </ul>
                 </li>
-            </ul>
 
-            <h4>Additional State Variables</h4>
-            <ul>
-                <li>Speed of the vehicle</li>
-                <li>Distance to track boundaries (to prevent off-track behavior)</li>
-                <li>Angular deviation from the optimal racing line (helps maintain smooth turns)</li>
-            </ul>
-
-            <h4>Experience Collection & Training Data</h4>
-            <ul>
-                <li>Each interaction produces an experience tuple: (state, action, reward, next\_state).</li>
-                <li>Actions taken: steering, acceleration, and braking.</li>
-            </ul>
-
-            <h4>Rewards are assigned based on:</h4>
-            <ul>
-                <li>Staying on track</li>
-                <li>Maintaining an optimal speed</li>
-                <li>Avoiding excessive braking or sharp turns</li>
-            </ul>
-
-            <h4>Enhancing Generalization</h4>
-            <ul>
-                <li>Experimenting with different reward functions to balance exploration and exploitation.</li>
-                <li>Testing across multiple track variations for robustness.</li>
-                <li>Adjusting penalties for off-track behavior and excessive steering to promote smooth
-                    driving.
+                <li>
+                    <strong>Rewards are assigned based on:</strong>
+                    <ul> 
+                        <li>Staying on track</li>
+                        <li>Maintaining an optimal speed</li>
+                        <li>Avoiding excessive braking or sharp turns</li>
+                    </ul>
                 </li>
-            </ul>
 
-            <h4>Efficient RL Training Pipeline</h4>
-            <ul>
-                <li>The collected data is used to iteratively train the PPO and SAC models.</li>
-                <li>By refining reward structures and state representations, we optimize the agent's
-                    learning process for autonomous driving in DonkeySim.
+                <li>
+                    <strong>Enhancing Generalization</strong>
+                    <ul> 
+                        <li>Experimenting with different reward functions to balance exploration and exploitation.</li>
+                        <li>Testing across multiple track variations for robustness.</li>
+                        <li>Adjusting penalties for off-track behavior and excessive steering to promote smooth
+                            driving. </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <strong>Efficient RL Training Pipeline</strong>
+                    <ul> 
+                        <li>The collected data is used to iteratively train the PPO model.</li>
+                        <li>By refining reward structures and state representations, we optimize the agent's
+                            learning process for autonomous driving in DonkeySim.
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </section>
@@ -256,13 +220,17 @@
                             the agent in the CARLA simulator.
                         </li>
                         <li>
+                            We used Proximal Policy Optimization (PPO) from stable-baselines3, training
+                            the agent in the DonkeySim simulator.
+                        </li>
+                        <li>
                             PPO balances exploration and exploitation, making it ideal for our continuous control
                             task.
                         </li>
                     </ul>
                 </li>
                 <li>
-                    Neural Network Architecture
+                    <strong>Neural Network Architecture</strong>
                     <p>
                         The PPO agent relies on two distinct neural networks: the actor, which determines the policy
                         (action selection), and the critic, which estimates the value function.
@@ -296,11 +264,11 @@
                                     <ul>
                                         <li>
                                             Throttle Mean: Passed through a sigmoid function to produce values in the
-                                            range \[0,1], biasing the agent toward forward movement.
+                                            range [0,1], biasing the agent toward forward movement.
                                         </li>
                                         <li>
                                             Steering Mean: Passed through a tanh function to produce values in the range
-                                            \[-1,1], enabling smooth left and right turns.
+                                            [-1,1], enabling smooth left and right turns.
                                         </li>
                                         <li>
                                             Standard Deviation: The log_std outputs are exponentiated, clamped, and
@@ -349,7 +317,7 @@
                     </ul>
                 </li>
                 <li>
-                    Reward Function Design
+                    <strong>Reward Function Design</strong>
                     <p>
                         The reward function evolved iteratively to guide the agent toward safe, efficient, and route-
                         following behavior:
@@ -380,12 +348,12 @@
                                     track boundaries.
                                 </li>
                                 <li>
-                                    Speed Regulation: Introduced a target speed of 30 km/h, with a penalty (-0.1 \*
+                                    Speed Regulation: Introduced a target speed of 30 km/h, with a penalty (-0.1 *
                                     speed - target ) for deviations, and an additional -1 penalty for speeds below 5
                                     km/h to prevent stalling.
                                 </li>
                                 <li>
-                                    Steering Smoothness: Penalized large steering actions (-0.5\* |steering|) when
+                                    Steering Smoothness: Penalized large steering actions (-0.5 * |steering|) when
                                     speed was below 5 km/h to reduce erratic behavior at low speeds.
                                 </li>
                                 <li>
@@ -402,7 +370,7 @@
                                     (max(0,5-distance/10)), encouraging route adherence.
                                 </li>
                                 <li>
-                                    Heading Alignment: Included a bonus (max(0,1-|angle\_diff|/180)) for aligning the
+                                    Heading Alignment: Included a bonus (max(0,1-|angle_diff|/180)) for aligning the
                                     vehicle's heading with the waypoint direction, promoting smoother turns.
                                 </li>
                                 <li>
@@ -417,7 +385,7 @@
                                     over 20 steps, preventing circular or stagnant behavior.
                                 </li>
                                 <li>
-                                    Implemented in CarlaEnvWrapper.step, this final version balances safety,
+                                    Implemented in <code>CarlaEnvWrapper.step</code>, this final version balances safety,
                                     efficiency, and navigation.
                                 </li>
                             </ul>
@@ -425,7 +393,7 @@
                     </ul>
                 </li>
                 <li>
-                    Deployment and Applications
+                    <strong>Deployment and Applications</strong>
                     <p>Setup deployment details</p>
                     <p>
                         A full list complete setup details can be found in the code repo's README.
@@ -464,14 +432,14 @@
                     <ul>
                         <li>
                             Definition: The total reward accumulated over an episode, calculated based on the
-                            reward function defined in your project. [cite: 84]
+                            reward function defined in your project. 
                         </li>
                         <li>
-                            Significance: This metric reflects the overall performance of the agent. [cite: 85, 86]
+                            Significance: This metric reflects the overall performance of the agent.
                             Higher
                             cumulative rewards indicate better navigation, fewer collisions, and more effective
-                            adherence to the intended route. [cite: 86, 87] It serves as a primary indicator of policy improvement
-                            during training. [cite: 87]
+                            adherence to the intended route. It serves as a primary indicator of policy improvement
+                            during training.
                         </li>
                     </ul>
                 </li>
@@ -479,12 +447,12 @@
                     <strong>Collision Rate</strong>
                     <ul>
                         <li>
-                            Definition: The frequency of collisions with obstacles or boundaries during an episode. [cite: 88]
+                            Definition: The frequency of collisions with obstacles or boundaries during an episode.
                         </li>
                         <li>
                             Significance: A lower collision rate is desirable, as it demonstrates the agent's ability to
-                            navigate safely and avoid hazards. [cite: 89, 90] This metric is critical for evaluating the safety
-                            performance of the driving policy. [cite: 90]
+                            navigate safely and avoid hazards.  This metric is critical for evaluating the safety
+                            performance of the driving policy.
                         </li>
                     </ul>
                 </li>
@@ -492,12 +460,12 @@
                     <strong>Distance Traveled</strong>
                     <ul>
                         <li>
-                            Definition: The total distance covered by the vehicle over the course of an episode. [cite: 91]
+                            Definition: The total distance covered by the vehicle over the course of an episode. 
                         </li>
                         <li>
                             Significance: When paired with a low collision rate, a higher distance traveled suggests
-                            efficient and effective navigation. [cite: 92, 93] This metric highlights the agent's progress and ability
-                            to follow the desired path. [cite: 93]
+                            efficient and effective navigation. This metric highlights the agent's progress and ability
+                            to follow the desired path.
                         </li>
                     </ul>
                 </li>
@@ -513,18 +481,18 @@
             </p>
             <p>
                 The primary objective of this study is to demonstrate that a well-designed reward function is
-                essential for effective reinforcement learning (RL)-based autonomous navigation. [cite: 94, 95] Additional
+                essential for effective reinforcement learning (RL)-based autonomous navigation. Additional
                 considerations include the utility of LiDAR data for state representation and the
-                appropriateness of PPO for continuous control tasks. [cite: 95, 96] We evaluate the PPO agent's
+                appropriateness of PPO for continuous control tasks.  We evaluate the PPO agent's
                 performance using two distinct reward models: a simpler reward-based model and an older,
-                more complicated reward-based model. [cite: 96, 97] The analysis centers on key performance metrics,
+                more complicated reward-based model.  The analysis centers on key performance metrics,
                 including episode rewards, distance traveled, episode lengths, and reward components,
                 derived from the training progress at epoch 50 for the older model and the rewards vs.
-                steps relationship for the simpler model. [cite: 97, 98]
+                steps relationship for the simpler model. 
             </p>
         
             <h3>Subsection 1: Performance of the Simpler Reward-Based Model</h3>
-        
+            <img src="Carla_PPO_agent/reward_vs_steps_by_epoch.png" alt="Training Progress Epoch 50">
             <p>
                 The performance of the PPO agent with the simpler reward-based model is illustrated in a
                 scatter plot titled "Episode Reward vs Steps (Colored by Epoch)," which tracks episode
@@ -536,10 +504,10 @@
                     <ul>
                         <li>
                             During the initial training phase (epochs 35-40), episode rewards are consistently
-                            low, ranging between -6000 and -4000. [cite: 99, 100] At around 100 steps, rewards frequently
-                            reach-6000, reflecting poor performance early in training. [cite: 100, 101] As steps increase to
+                            low, ranging between -6000 and -4000. At around 100 steps, rewards frequently
+                            reach-6000, reflecting poor performance early in training. As steps increase to
                             200, rewards remain predominantly negative, with significant variability-some
-                            points improve to -1000, while others drop back to -5000 or lower. [cite: 101, 102]
+                            points improve to -1000, while others drop back to -5000 or lower. 
                         </li>
                     </ul>
                 </li>
@@ -548,10 +516,10 @@
                     <ul>
                         <li>
                             In the mid-training phase (epochs 41-55), the agent's performance begins to
-                            improve. [cite: 102, 103] Between 200 and 300 steps, episode rewards cluster between -4000 and
-                            -2000, with fewer points falling below -5000. [cite: 103, 104] Variability persists, with some
+                            improve. Between 200 and 300 steps, episode rewards cluster between -4000 and
+                            -2000, with fewer points falling below -5000. Variability persists, with some
                             episodes achieving rewards as high as -1000, while others remain around -4000,
-                            indicating inconsistent progress. [cite: 104, 105]
+                            indicating inconsistent progress.
                         </li>
                     </ul>
                 </li>
@@ -559,28 +527,29 @@
                     Later Epochs (56-72):
                     <ul>
                         <li>
-                            By the later epochs (56-72), further improvement is evident. [cite: 105, 106] Between 300 and 450
+                            By the later epochs (56-72), further improvement is evident.  Between 300 and 450
                             steps, rewards concentrate between -3000 and -1000, with several points nearing
-                            0 (e.g., around -500 at 400-450 steps). [cite: 106, 107] However, some outliers still drop to -4000,
-                            suggesting that the agent has not yet achieved fully stable performance. [cite: 107, 108]
+                            0 (e.g., around -500 at 400-450 steps). However, some outliers still drop to -4000,
+                            suggesting that the agent has not yet achieved fully stable performance. 
                         </li>
                     </ul>
                 </li>
                 <li>
                     Key Observation: The scatter plot reveals a clear upward trend in episode rewards as both
                     steps and epochs increase, demonstrating that the PPO agent is learning and refining its
-                    navigation abilities under the simpler reward model. [cite: 108, 109] Nevertheless, the persistent variability
+                    navigation abilities under the simpler reward model. Nevertheless, the persistent variability
                     in rewards indicates that additional training or model refinement may be required to achieve
-                    consistent and optimal performance. [cite: 109, 110]
+                    consistent and optimal performance. 
                 </li>
             </ul>
         
             <h3>Subsection 2: Performance of the Older, More Complicated Reward-Based
                 Model (Training Progress at Epoch 50)</h3>
+                <img src="Carla_PPO_agent/training_progress_epoch_50.png" alt="Training Progress Epoch 50" />
         
             <p>
                 The older, more complicated reward-based model's performance is assessed using four
-                charts depicting training progress over 100 epochs. [cite: 111, 112] Here, we focus specifically on the
+                charts depicting training progress over 100 epochs. Here, we focus specifically on the
                 agent's behavior at epoch 50.
             </p>
         
@@ -589,11 +558,11 @@
                     Episode Rewards:
                     <ul>
                         <li>
-                            At epoch 50, the total reward is approximately 2,000. [cite: 112, 113] This follows a peak of around
-                            10,000 at episode 40 and a subsequent decline. [cite: 113, 114] Across the 100 epochs, rewards
+                            At epoch 50, the total reward is approximately 2,000. This follows a peak of around
+                            10,000 at episode 40 and a subsequent decline. Across the 100 epochs, rewards
                             fluctuate widely, with notable spikes at episode 10 (around 20,000), episode 60
                             (around 15,000), and episode 80 (around 5,000), but they generally hover around
-                            2,000 outside these peaks. [cite: 114, 115]
+                            2,000 outside these peaks. 
                         </li>
                     </ul>
                 </li>
@@ -603,8 +572,8 @@
                         <li>
                             The distance traveled at epoch 50 reaches approximately 120 meters, a significant
                             peak compared to surrounding episodes, which typically range between 20 and 40
-                            meters. [cite: 115, 116] Other prominent peaks include episode 10 (120 meters), episode 30 (100
-                            meters), episode 70 (80 meters), and episode 90 (140 meters). [cite: 116, 117]
+                            meters. Other prominent peaks include episode 10 (120 meters), episode 30 (100
+                            meters), episode 70 (80 meters), and episode 90 (140 meters). 
                         </li>
                     </ul>
                 </li>
@@ -613,9 +582,9 @@
                     <ul>
                         <li>
                             At epoch 50, the episode length is around 300 steps, relatively modest compared
-                            to earlier peaks like episode 10 (900 steps). [cite: 117, 118] Episode lengths generally fluctuate
+                            to earlier peaks like episode 10 (900 steps). Episode lengths generally fluctuate
                             between 200 and 400 steps, with occasional spikes, such as 600 steps at episode
-                            60 and 700 steps at episode 80. [cite: 118]
+                            60 and 700 steps at episode 80. 
                         </li>
                     </ul>
                 </li>
@@ -625,19 +594,19 @@
                         <li>
                             The total reward at epoch 50 is dominated by the "progress" component
                             (approximately 2,000), with a minor contribution from the "longevity" component
-                            (around 500). [cite: 119, 120] Other components-collision, lane invasion, lane centering, heading,
+                            (around 500). Other components-collision, lane invasion, lane centering, heading,
                             speed, steering smoothness, survival bonus, and completion bonus-remain near
-                            zero, indicating negligible influence on the total reward. [cite: 120, 121]
+                            zero, indicating negligible influence on the total reward. 
                         </li>
                     </ul>
                 </li>
                 <li>
                     Key Observation: At epoch 50, the older model yields a total reward of 2,000, with a
-                    notable distance traveled of 120 meters. [cite: 121, 122] The overwhelming contribution of the "progress"
+                    notable distance traveled of 120 meters. The overwhelming contribution of the "progress"
                     reward component suggests that the agent is primarily incentivized to move forward, while
-                    safety and efficiency metrics (e.g., collision avoidance, lane discipline) play a minimal role. [cite: 122, 123]
+                    safety and efficiency metrics (e.g., collision avoidance, lane discipline) play a minimal role. 
                     This imbalance may result in suboptimal navigation behavior, as the agent prioritizes
-                    distance over other critical objectives. [cite: 123]
+                    distance over other critical objectives.
                 </li>
             </ul>
         
@@ -648,14 +617,14 @@
                     <ul>
                         <li>
                             The simpler model exhibits a steady increase in episode rewards, progressing from
-                            -6000 to near 0 across epochs 35 to 72. [cite: 124, 125] While this indicates effective learning, the
+                            -6000 to near 0 across epochs 35 to 72. While this indicates effective learning, the
                             high variability in rewards suggests that the agent has not yet converged to a
-                            stable, optimal policy. [cite: 124, 125]
+                            stable, optimal policy.
                         </li>
                         <li>
                             Without detailed reward component data, specific behavioral improvements (e.g.,
                             collision avoidance, lane adherence) are difficult to assess, but the overall trend
-                            reflects enhanced navigation capability. [cite: 125, 126]
+                            reflects enhanced navigation capability. 
                         </li>
                     </ul>
                 </li>
@@ -665,22 +634,22 @@
                         <li>
                             The older model displays significant reward volatility, with occasional high-reward
                             episodes (e.g., 20,000 at episode 10) followed by drops to lower values (e.g., 2,000
-                            at epoch 50). [cite: 126, 127] Distance traveled and episode lengths also fluctuate widely. [cite: 127]
+                            at epoch 50).Distance traveled and episode lengths also fluctuate widely. 
                         </li>
                         <li>
                             The reward components highlight a heavy reliance on "progress," with minimal
-                            contributions from safety or efficiency metrics. [cite: 127, 128] This skewed reward structure likely
+                            contributions from safety or efficiency metrics. This skewed reward structure likely
                             undermines consistent performance by favoring forward movement over balanced
-                            navigation. [cite: 128, 129]
+                            navigation.
                         </li>
                     </ul>
                 </li>
                 <li>
                     Insight: The simpler reward model, despite its simplicity, shows more consistent
                     improvement in rewards over time, suggesting that a straightforward, well-tuned reward
-                    function may outperform a complex one in this context. [cite: 129, 130] Conversely, the older model's focus
+                    function may outperform a complex one in this context. Conversely, the older model's focus
                     on progress at the expense of other behaviors leads to erratic outcomes, underscoring the
-                    need for a balanced reward design. [cite: 130, 131]
+                    need for a balanced reward design.
                 </li>
             </ul>
         
@@ -690,24 +659,24 @@
                     Simpler Reward Model:
                     <p>
                         The steady reward improvement implies that the agent is learning to balance basic
-                        navigation tasks, such as advancing while avoiding obstacles. [cite: 131, 132] However, the lack of
-                        reward component breakdown limits insight into specific behavioral advancements. [cite: 132, 133]
+                        navigation tasks, such as advancing while avoiding obstacles. However, the lack of
+                        reward component breakdown limits insight into specific behavioral advancements. 
                     </p>
                 </li>
                 <li>
                     Older Reward Model:
                     <p>
                         The dominance of the "progress" component likely drives the agent to prioritize
-                        distance covered over safety or precision. [cite: 133, 134] The high distance traveled at epoch 50
+                        distance covered over safety or precision. The high distance traveled at epoch 50
                         (120 meters) despite a modest reward (2,000) suggests risky actions, such as
-                        neglecting collisions or lane discipline, which contribute little to the reward. [cite: 134, 135]
+                        neglecting collisions or lane discipline, which contribute little to the reward. 
                     </p>
                 </li>
                 <li>
-                    Observation: The older modelʼs reward structure may encourage unsafe navigation by
-                    underweighting critical safety and efficiency metrics. [cite: 135, 136] This highlights the importance of a
+                    Observation: The older model's reward structure may encourage unsafe navigation by
+                    underweighting critical safety and efficiency metrics. This highlights the importance of a
                     reward function that integrates multiple objectives—progress, safety, and adherence—to
-                    foster robust autonomous navigation. [cite: 136, 137]
+                    foster robust autonomous navigation. 
                 </li>
             </ul>
         
@@ -715,51 +684,95 @@
             <p>
                 Why DonkeySim?: While we were satisfied with our results from our CARLA
                 simulations, we also wanted to test out another autonomous vehicle simulator:
-                DonkeySim. [cite: 137, 138] Our goal was to investigate if we would end up with similar results as above
+                DonkeySim. Our goal was to investigate if we would end up with similar results as above
                 if we used a similar model structure in a simpler DonkeySim domain instead of a highly
-                complex and realistic CARLA domain. [cite: 138, 139]
+                complex and realistic CARLA domain. 
             </p>
             <p>
                 Procedure & Setup: To get a good understanding of the relationship between map
                 complexity and model performance, we decided to test a singular model -
                 stable_baselines3's PPO with CNN-policy - across three different DonkeySim Maps:
-                Waveshore, Warren Track, & Mountain Track. [cite: 139, 140] Waveshore is the smallest and simplest
-                map, being a simple loop with minimal obstacles or changes in elevation. [cite: 140, 141] We classified
-                Mountain Track as a "Medium" map, since there were minimal obstacles. [cite: 141, 142] However, as
+                Waveshore, Warren Track, & Mountain Track. Waveshore is the smallest and simplest
+                map, being a simple loop with minimal obstacles or changes in elevation. We classified
+                Mountain Track as a "Medium" map, since there were minimal obstacles. However, as
                 we would find out later, this map was more complicated than hypothesized becuase of
-                the changes in elevation adding a hurdle for the car to have to overcome. [cite: 142, 143] Lastly, the
+                the changes in elevation adding a hurdle for the car to have to overcome. Lastly, the
                 UCSD-based Warren track, which was the most difficult map due to its abundance of
-                obstacles, twisting-and-turning map, and small width of the track itself. [cite: 143, 144]
+                obstacles, twisting-and-turning map, and small width of the track itself. 
             </p>
         
-            <h4>Results:</h4>
+            <h3>Results:</h3>
             <ul>
+                <img src="Donkey_PPO_agent/data/waveshore-reward-plot.png" alt="Waveshore Reward Plot">
                 <li>
-                    Waveshore ("Easy") - In this simple looped track, our agent was able to converge and
+                    <strong>Waveshore ("Easy")</strong> - In this simple looped track, our agent was able to converge and
                     (mostly) adhere to the path that it was supposed to follow after a few minutes of
-                    training! [cite: 145, 146] This was a landmark discovery for us, since it showed that PPO does have
+                    training! This was a landmark discovery for us, since it showed that PPO does have
                     opporunity for success, however it may just be limited to small, toy enviornments with
-                    limited distractions. [cite: 146, 147] In either case, our training data showed an ideal trajectory, with
+                    limited distractions. In either case, our training data showed an ideal trajectory, with
                     episodes mean reward steadily increasing from the beginning to the end of the training
                     process, where you can see in our video that the DonkeyCar follows the trajectory of
-                    the track, although it isn't perfect and is still susceptible to going off track at times. [cite: 147, 148]
+                    the track, although it isn't perfect and is still susceptible to going off track at times. 
+
+                    <div class="video-row">
+                        <div class="video-container">
+                          <iframe
+                            src="https://drive.google.com/file/d/1vfdmZW42oK9Yil87iyEggA-u6x3QDgWh/preview"
+                            allowfullscreen
+                          ></iframe>
+                          <figcaption>Start of Training</figcaption>
+                        </div>
+                      
+                        <div class="video-container">
+                          <iframe
+                            src="https://drive.google.com/file/d/116k1_AfCt0N_aplQUfIDmTbLh55oaai8/preview"
+                            allowfullscreen
+                          ></iframe>
+                          <figcaption>End of Training</figcaption>
+                        </div>
+                      </div>
+
+                      
                 </li>
+                <hr>
+                <img src="Donkey_PPO_agent/data/mountain-reward-plot.png" alt="Mountain Track Reward Plot">
                 <li>
-                    Mountain Track ("Medium") - The Mountain Track was next in our training process,
+                    <strong>Mountain Track ("Medium")</strong> - The Mountain Track was next in our training process,
                     and over the course of the training period the car seemed to be making significant
-                    strides in terms of moving ahead in the map. [cite: 149, 150] However, this progress wasn't perfect and
+                    strides in terms of moving ahead in the map. However, this progress wasn't perfect and
                     for every good run the car made, it followed it up with a few "dumb" runs where it
                     decided to spin in circles until it crashed or got stuck on the elevation differences, and
-                    you can clearly see these fluctuations in the above graph. [cite: 150, 151] An unexpected problem was
+                    you can clearly see these fluctuations in the above graph. An unexpected problem was
                     the fact that the car struggled with the leveling of the track, since the mountainous
                     track wasn't smooth and had ups and downs which served as obstacles the car had to
-                    navigate. [cite: 151, 152] While the car wasn't able to complete the track in the allotted training period,
-                    it was able to make significant progress. [cite: 152, 153] As we will discuss in the limitations section in
+                    navigate. While the car wasn't able to complete the track in the allotted training period,
+                    it was able to make significant progress. As we will discuss in the limitations section in
                     more detail, we couldn't simple increase time steps to wait for convergence as
-                    DonkeySim's simulator began crashing. [cite: 153, 154]
+                    DonkeySim's simulator began crashing. 
+
+                    <div class="video-row">
+                        <div class="video-container">
+                          <iframe
+                            src="https://drive.google.com/file/d/1R1CADLaII7pKlwOeVeMW-sgoGFtFZSoE/preview"
+                            allowfullscreen
+                          ></iframe>
+                          <figcaption>Start of Training</figcaption>
+                        </div>
+                      
+                        <div class="video-container">
+                          <iframe
+                            src="https://drive.google.com/file/d/10tgrBfMoVK7DordT-_0W98LeOIM8LJWc/preview"
+                            allowfullscreen
+                          ></iframe>
+                          <figcaption>End of Training</figcaption>
+                        </div>
+                      </div>
                 </li>
+                <hr>
+
+                <img src="Donkey_PPO_agent/data/warren-reward-plot.png" alt="Warren Track Reward Plot">
                 <li>
-                    Warren Track ("Hard") - The most difficult of the three tracks, our agent was
+                    <strong>Warren Track ("Hard")</strong> - The most difficult of the three tracks, our agent was
                     unable to make any progress in this map. It would consistently crash into the
                     barriers on the side of the track, and when it did manage to make it past the first
                     turn it would then crash into the next wall. This was a consistent pattern that we
@@ -769,6 +782,24 @@
                     turn. This was a big learning experience for us, as it showed that even though PPO
                     is a very powerful RL algorithm, it is still susceptible to poor performance in
                     complex environments.
+
+                    <div class="video-row">
+                        <div class="video-container">
+                          <iframe
+                            src="https://drive.google.com/file/d/1lg9gjJyD24RneUr_JTrzXqzXTNBF4nkv/preview"
+                            allowfullscreen
+                          ></iframe>
+                          <figcaption>Start of Training</figcaption>
+                        </div>
+                      
+                        <div class="video-container">
+                          <iframe
+                            src="https://drive.google.com/file/d/1inFFShiGs9BggobDW0P6075G7ChXlVL-/preview"
+                            allowfullscreen
+                          ></iframe>
+                          <figcaption>End of Training</figcaption>
+                        </div>
+                      </div>
                 </li>
             </ul>
         </section>
@@ -800,31 +831,31 @@
             </p>
             <ul>
                 <li>
-                    Computational Resources: Training reinforcement learning models, especially in
+                    <strong>Computational Resources:</strong> Training reinforcement learning models, especially in
                     complex environments like CARLA, requires substantial computational power.
                     Limited access to high-performance computing resources restricted the scale and
                     duration of our experiments.
                 </li>
                 <li>
-                    Simulation Fidelity: While CARLA provides a high-fidelity simulation environment,
+                    <strong>Toy Environment:</strong> While CARLA provides a high-fidelity simulation environment,
                     it is still an approximation of real-world conditions. Discrepancies between the
                     simulation and the real world may limit the transferability of our results.
                 </li>
                 <li>
-                    Model Complexity: The complexity of the models and algorithms used in
+                    <strong>Model Complexity:</strong> The complexity of the models and algorithms used in
                     reinforcement learning can make it challenging to interpret and optimize their
                     performance. We relied on established architectures and methodologies, but there
                     is always room for further refinement and innovation.
                 </li>
                 <li>
-                    Hyperparameter Tuning: Reinforcement learning models have many hyperparameters
+                    <strong>Hyperparameter Tuning:</strong> Reinforcement learning models have many hyperparameters
                     that can significantly impact their performance. Tuning these hyperparameters
                     effectively requires extensive experimentation and expertise. Due to resource
                     constraints, we were not able to explore the full range of hyperparameter
                     combinations.
                 </li>
                 <li>
-                    DonkeySim Limitations: As briefly discussed in the Results section, we ran into
+                    <strong>DonkeySim Limitations:</strong> As briefly discussed in the Results section, we ran into
                     some limitations when it came to using DonkeySim. The simulator would often crash
                     and we would have to restart it, which prevented us from running our experiments
                     for longer periods of time. This was a significant limitation, as it prevented us
@@ -841,34 +872,34 @@
             </p>
             <ul>
                 <li>
-                    Enhanced Reward Shaping: Investigate more sophisticated reward shaping techniques
+                    <strong>Enhanced Reward Shaping:</strong> Investigate more sophisticated reward shaping techniques
                     to guide the agent's learning process more effectively. This could involve designing
                     reward functions that incentivize specific behaviors, such as smooth driving, energy
                     efficiency, or passenger comfort.
                 </li>
                 <li>
-                    Curriculum Learning: Implement a curriculum learning approach where the agent is
+                    <strong>Curriculum Learning:</strong> Implement a curriculum learning approach where the agent is
                     gradually exposed to more complex environments and tasks. This could help the agent
                     learn more robust and generalizable policies.
                 </li>
                 <li>
-                    Multi-Agent Reinforcement Learning: Extend the project to multi-agent scenarios
+                    <strong>Multi-Agent Reinforcement Learning:</strong> Extend the project to multi-agent scenarios
                     where multiple autonomous vehicles interact with each other. This would allow for
                     the exploration of cooperative and competitive behaviors in autonomous driving.
                 </li>
                 <li>
-                    Real-World Validation: Transfer the trained models to real-world autonomous
+                    <strong>Real-World Validation:</strong> Transfer the trained models to real-world autonomous
                     vehicles and evaluate their performance in actual driving conditions. This would
                     require addressing challenges such as sensor noise, environmental variability, and
                     safety considerations.
                 </li>
                 <li>
-                    Advanced Model Architectures: Explore the use of more advanced model architectures,
+                    <strong>Advanced Model Architectures:</strong> Explore the use of more advanced model architectures,
                     such as attention mechanisms or graph neural networks, to improve the agent's
                     ability to perceive and reason about its environment.
                 </li>
                 <li>
-                    DonkeySim: Given the limitations we faced when using DonkeySim, future work
+                    <strong>DonkeySim:</strong> Given the limitations we faced when using DonkeySim, future work
                     could focus on addressing these limitations. This could involve finding ways to
                     prevent the simulator from crashing, or finding alternative simulators that are
                     more stable.
@@ -884,29 +915,29 @@
             </p>
             <ul>
                 <li>
-                    Safety: Ensuring the safety of autonomous vehicles is paramount. It is crucial to
+                    <strong>Safety:</strong> Ensuring the safety of autonomous vehicles is paramount. It is crucial to
                     thoroughly test and validate these systems to minimize the risk of accidents and
                     injuries.
                 </li>
                 <li>
-                    Bias: Reinforcement learning models can inadvertently learn and perpetuate biases
+                    <strong>Bias:</strong> Reinforcement learning models can inadvertently learn and perpetuate biases
                     present in the training data. It is important to carefully curate training datasets
                     and employ techniques to mitigate bias in the models.
                 </li>
                 <li>
-                    Privacy: Autonomous vehicles collect and process vast amounts of data about their
+                    <strong>Privacy:</strong> Autonomous vehicles collect and process vast amounts of data about their
                     surroundings and occupants. It is essential to protect the privacy of individuals by
                     implementing robust data security measures and adhering to relevant privacy
                     regulations.
                 </li>
                 <li>
-                    Accountability: Determining liability in the event of an accident involving an
+                    <strong>Accountability:</strong> Determining liability in the event of an accident involving an
                     autonomous vehicle is a complex legal and ethical challenge. Clear guidelines and
                     regulations are needed to establish accountability and ensure fair compensation
                     for victims.
                 </li>
                 <li>
-                    Transparency: It is important to make the decision-making processes of
+                    <strong>Transparency:</strong> It is important to make the decision-making processes of
                     autonomous vehicles transparent and understandable to the public. This can help
                     build trust and acceptance of these technologies.
                 </li>
@@ -916,47 +947,54 @@
         <section id="conclusion">
             <h2>Conclusion</h2>
             <p>
-                In conclusion, this project demonstrated the potential of reinforcement learning for
-                autonomous vehicle navigation but also revealed challenges in balancing safety, lane
-                adherence, and progress incentives. Additionally, model performance remained highly
-                sensitive to training conditions, hyperparameter choices, and the diversity of training
-                environments.
-            </p>
-            <p>
-                While RL shows promise in autonomous driving, significant challenges remain in bridging
-                the sim-to-real gap, ensuring safety, and addressing ethical concerns such as bias and
-                transparency. Future work should focus on optimizing learning efficiency, deploying
-                models on real-world robotic platforms, and integrating privacy safeguards to align with
-                regulatory standards. As reinforcement learning continues to evolve, advancements in
-                reward shaping, model-based RL, real-world validation, and ethical AI frameworks will
-                be critical in bringing AI-driven autonomous systems closer to practical deployment.
+                This project explored the application of reinforcement learning for autonomous vehicle navigation in DonkeySim and CARLA. By implementing and evaluating Proximal Policy Optimization (PPO) and Actor-Critic methods, we demonstrated their potential in training self-driving agents within a simulated environment. Our results highlighted the importance of a well-designed reward function for effective learning but also revealed challenges in balancing safety, lane adherence, and progress incentives. Additionally, model performance remained highly sensitive to training conditions, hyperparameter choices, and the diversity of training environments. <br><br>
+
+                While RL shows promise in autonomous driving, significant challenges remain in bridging the sim-to-real gap, ensuring safety, and addressing ethical concerns such as bias and transparency. Future work should focus on optimizing learning efficiency, deploying models on real-world robotic platforms, and integrating privacy safeguards to align with regulatory standards. As reinforcement learning continues to evolve, advancements in reward shaping, model-based RL, real-world validation, and ethical AI frameworks will be critical in bringing AI-driven autonomous systems closer to practical deployment.
             </p>
         </section>
 
         <section id="footnotes">
             <h2>Footnotes</h2>
             <ol>
-                <li>
-                    ^: Lorenz, T. (9 Dec 2021) Birds Aren't Real, or Are They? Inside a Gen Z Conspiracy
-                    Theory.
-                    The New York Times.
-                    <a href="https://www.nytimes.com/2021/12/09/technology/birds-arent-real-gen-z-misinformation.html"
-                        target="_blank">https://www.nytimes.com/2021/12/09/technology/birds-arent-real-gen-z-misinformation.html</a> [cite: 198, 199]
-                </li>
-                <li>
-                    ^: Also refs should be important to the background, not some randomly chosen vaguely
-                    related stuff.
-                    Include a web link if possible in refs as above. [cite: 200]
-                </li>
-                <li>
-                    ^: Perhaps the current state of the art solution such as you see on Papers with code.
-                    Or
-                    maybe not SOTA, but rather a standard textbook/Kaggle solution to this kind of problem [cite: 201, 202]
-                </li>
+              <li>
+                <a name="kirannote"></a>
+                <a href="#kiran"><sup>[1]</sup></a> Kiran et al. (2021). "Deep Reinforcement Learning for Autonomous Driving: A Survey." A comprehensive review of RL applications in self-driving cars.
+                <a href="https://arxiv.org/pdf/2002.00444.pdf" target="_blank">Link</a>
+              </li>
+              <li>
+                <a name="pengnote"></a>
+                <a href="#peng"><sup>[2]</sup></a> Peng et al. (2018). "Sim-to-Real Transfer of Robotic Control with Dynamics Randomization." A study on addressing the simulation-to-reality gap in RL applications.
+                <a href="https://arxiv.org/pdf/1710.06537.pdf" target="_blank">Link</a>
+              </li>
+              <li>
+                <a name="taylornote"></a>
+                <a href="#taylor"><sup>[3]</sup></a> Taylor & Stone (2009). "Transfer Learning for Reinforcement Learning Domains: A Survey." A discussion on transfer learning techniques to improve RL generalization.
+                <a href="https://www.cs.utexas.edu/~pstone/Papers/bib2html-links/JMLR09-taylor.pdf" target="_blank">Link</a>
+              </li>
+              <li>
+                <a name="donkeysimnote"></a>
+                <a href="#donkeysim"><sup>[4]</sup></a> Donkey Simulator. Official Documentation.
+                <a href="https://docs.donkeycar.com/guide/deep_learning/simulator/" target="_blank">Link</a>
+              </li>
+              <li>
+                <a name="carlanote"></a>
+                <a href="#carla"><sup>[5]</sup></a> CARLA Simulator. Official Documentation.
+                <a href="https://carla.readthedocs.io/en/latest/" target="_blank">Link</a>
+              </li>
+              <li>
+                <a name="pponote"></a>
+                <a href="#ppo"><sup>[6]</sup></a> PPO. Stable-Baselines3 Documentation. A widely used reinforcement learning algorithm for continuous control.
+                <a href="https://stable-baselines3.readthedocs.io/en/v1.0/modules/ppo.html" target="_blank">Link</a>
+              </li>
+              <li>
+                <a name="sacnote"></a>
+                <a href="#sac"><sup>[7]</sup></a> SAC. Stable-Baselines3 Documentation. A reinforcement learning algorithm based on the Actor-Critic framework with entropy regularization.
+                <a href="https://stable-baselines3.readthedocs.io/en/v1.0/modules/sac.html" target="_blank">Link</a>
+              </li>
             </ol>
-        </section>
+          </section>
     
         <footer>
-            <p>&copy; 2024 Autobots Project. All rights reserved.</p>
+            <p>&copy; COGS 188 Winter 2025 Autobots Project.</p>
         </footer>
             
