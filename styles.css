@@ -1,0 +1,138 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f0f8ff; /* Light bluish background */
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 80%;
+
+    margin: auto;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    border-radius: 10px; /* Rounded corners for a modern look */
+    padding: 20px;
+}
+
+header {
+    background: linear-gradient(135deg, #4776E6, #8E54E9); /* Gradient header, car/AI feel */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: none; /* Remove redundant border */
+    border-radius: 10px 10px 0 0; /* Match container radius */
+}
+
+header h1 {
+    font-size: 2.5em;
+    font-weight: 600;
+    margin-bottom: 0.2em;
+}
+
+header p {
+    font-size: 1.1em;
+    opacity: 0.8;
+}
+
+section {
+    margin-top: 20px;
+    padding: 20px;
+    border-bottom: 1px solid #eee; /* Lighter border */
+}
+
+section:last-of-type {
+    border-bottom: none; /* No border on the last section */
+}
+
+section h2 {
+    color: #333;
+    font-size: 1.8em;
+    font-weight: 550;
+    margin-bottom: 0.5em;
+    padding-bottom: 0.3em;
+    border-bottom: 2px solid #ddd;
+}
+
+section h3 {
+    color: #666;
+    font-size: 1.2em;
+    font-weight: 500;
+    margin-top: 1em;
+}
+
+section ul,
+section ol {
+    margin-top: 0.5em;
+    padding-left: 25px;
+}
+
+section ul {
+    list-style-type: square; /* Updated list style */
+}
+
+/* Specific section styling */
+#group-members ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+#group-members li {
+    display: inline;
+    margin: 0 15px;
+    font-size: 1.1em;
+    font-weight: 500;
+    color: #555;
+}
+
+#abstract p {
+    text-align: justify;
+    font-size: 1.1em;
+}
+
+/* AI/Tech Emphasis */
+#data h3,
+#proposed-solution h3,
+#evaluation-metrics h3,
+#results h2,
+#discussion h2,
+#limitations h2,
+#future-work h2,
+#ethics-privacy h2,
+#conclusion h2 {
+    color: #4CAF50; /* Green accent for AI/Tech */
+}
+
+/* Code-like styling for technical terms */
+code {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Links */
+a {
+    color: #03A9F4;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #036690;
+}
+
+/* Footer (Optional, but good for resume sites) */
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding: 10px 0;
+    font-size: 0.9em;
+    color: #777;
+    border-top: 1px solid #eee;
+}
